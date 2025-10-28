@@ -1,4 +1,11 @@
-import { quiz_Ghibli } from './question.js';
+import { quiz_Ghibli } from "./question.js";
 
-const quizGhibli = document.querySelector('body');
-const quizContainer = document.getElementById('#quiz-container');
+const document
+
+const quizContainer = document.getElementById("quiz-container");
+const quizQuestion = document.getElementsByClassName("question");
+const quizOption = document.getElementsByClassName("options");
+const quizButton = document.getElementsByClassName("button-container");
+const nextButton = document.getElementById("next-button");
+
+console.log(quizContainer.textContent)
