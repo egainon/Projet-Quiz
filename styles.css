@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
   font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
 }
 
 :root {
@@ -9,12 +12,6 @@
   --sidecar: #f1dcb6;
   --aspargus: #7d9b5f;
   --cashmere: #e3bba1;
-}
-
-/* 🌸 Global */
-* {
-  box-sizing: border-box;
-  font-family: "Quicksand", "Poppins", sans-serif;
 }
 
 body {
@@ -28,7 +25,6 @@ body {
   justify-content: center;
 }
 
-/* 🧩 Container principal */
 #quiz-container {
   background-color: var(--sidecar);
   color: var(--aspargus);
@@ -45,15 +41,13 @@ body {
   transform: scale(1.01);
 }
 
-/* 🧠 Question */
 .question {
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.5;
 }
 
-/* 🔘 Options */
 .options {
   display: flex;
   flex-direction: column;
@@ -67,13 +61,13 @@ body {
   border-radius: 8px;
   padding: 0.8rem 1rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .options button:hover {
-  background-color: var(--st-blue);
+  border-color: var(--wewak);
   color: white;
   transform: translateY(-2px);
 }
@@ -94,7 +88,6 @@ button.wrong {
   color: white;
 }
 
-/* ⏭️ Bouton "Suivant" */
 .button-container {
   margin-top: 2rem;
   display: flex;
