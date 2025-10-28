@@ -1,0 +1,116 @@
+:root {
+  --vert-sauge: #9DBF9E;
+  --beige-clair: #F2EAD3;
+  --brun-doux: #A67C52;
+  --vert-profond: #4A6657;
+  --terre-ocre: #C9A66B;
+}
+
+/* 🌸 Global */
+* {
+box-sizing: border-box;
+font-family: "Nunito", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: var(--beige-clair);
+  background-image: url("./images/Fond-image-totoro-desktop-beige-clair.png");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🧩 Container principal */
+#quiz-container {
+  background-color: var(--vert-sauge);
+  color: var(--vert-profond);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+#quiz-container:hover {
+  transform: scale(1.01);
+}
+
+/* 🧠 Question */
+.question {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* 🔘 Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.options button {
+  background-color: var(--beige-clair);
+  color: var(--vert-profond);
+  border: 2px solid var(--terre-ocre);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.options button:hover {
+  background-color: var(--terre-ocre);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* 🎯 États dynamiques (à gérer via JS) */
+button.selected {
+  background-color: var(--brun-doux);
+  color: white;
+}
+
+button.correct {
+  background-color: var(--vert-sauge);
+  color: var(--vert-profond);
+}
+
+button.wrong {
+  background-color: #d57a66;
+  color: white;
+}
+
+/* ⏭️ Bouton "Suivant" */
+.button-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+#next-button {
+  background-color: var(--vert-profond);
+  color: var(--beige-clair);
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#next-button:hover {
+  background-color: var(--beige-clair);
+  color: var(--vert-profond);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
