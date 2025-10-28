@@ -1,22 +1,27 @@
+* {
+  box-sizing: border-box;
+  font-family: "Comfortaa", sans-serif;
+}
+
 :root {
-  --vert-sauge: #9DBF9E;
-  --beige-clair: #F2EAD3;
-  --brun-doux: #A67C52;
-  --vert-profond: #4A6657;
-  --terre-ocre: #C9A66B;
+  --st-blue: #a3c5e0;
+  --wewak: #f0a3b0;
+  --sidecar: #f1dcb6;
+  --aspargus: #7d9b5f;
+  --cashmere: #e3bba1;
 }
 
 /* 🌸 Global */
 * {
-box-sizing: border-box;
-font-family: "Nunito", sans-serif;
+  box-sizing: border-box;
+  font-family: "Quicksand", "Poppins", sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color: var(--beige-clair);
+  background-color: var(--wewak);
   background-image: url("./images/Fond-image-totoro-desktop-beige-clair.png");
   display: flex;
   align-items: center;
@@ -25,8 +30,8 @@ body {
 
 /* 🧩 Container principal */
 #quiz-container {
-  background-color: var(--vert-sauge);
-  color: var(--vert-profond);
+  background-color: var(--sidecar);
+  color: var(--aspargus);
   border-radius: 16px;
   padding: 2rem;
   width: 90%;
@@ -56,9 +61,9 @@ body {
 }
 
 .options button {
-  background-color: var(--beige-clair);
-  color: var(--vert-profond);
-  border: 2px solid var(--terre-ocre);
+  background-color: var(--st-blue);
+  color: var(--aspargus);
+  border: 2px solid var(--st-blue);
   border-radius: 8px;
   padding: 0.8rem 1rem;
   font-size: 1rem;
@@ -68,20 +73,20 @@ body {
 }
 
 .options button:hover {
-  background-color: var(--terre-ocre);
+  background-color: var(--st-blue);
   color: white;
   transform: translateY(-2px);
 }
 
 /* 🎯 États dynamiques (à gérer via JS) */
 button.selected {
-  background-color: var(--brun-doux);
+  background-color: var(--sidecar);
   color: white;
 }
 
 button.correct {
-  background-color: var(--vert-sauge);
-  color: var(--vert-profond);
+  border: var(--wewak);
+  color: var(--aspargus);
 }
 
 button.wrong {
@@ -97,8 +102,8 @@ button.wrong {
 }
 
 #next-button {
-  background-color: var(--vert-profond);
-  color: var(--beige-clair);
+  background-color: var(--aspargus);
+  color: var(--sidecar);
   border: none;
   border-radius: 10px;
   padding: 0.9rem 1.8rem;
@@ -109,8 +114,8 @@ button.wrong {
 }
 
 #next-button:hover {
-  background-color: var(--beige-clair);
-  color: var(--vert-profond);
+  background-color: var(--wewak);
+  color: var(--aspargus);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
