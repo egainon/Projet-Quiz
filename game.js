@@ -9,7 +9,7 @@ console.log(quizContainer, quizQuestion, quizOption, nextButton);
 
 const firstQuestion = quiz_Ghibli.questions[0];
 
-quizQuestion.innerText = firstQuestion;
+quizQuestion.innerText = firstQuestion.text;
 
 console.log(firstQuestion);
 
