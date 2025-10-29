@@ -28,14 +28,15 @@ function loadQuestion () {
     if(currentQuestionIndex < quiz_Ghibli.questions.length) { // si l'index de la question actuelle fait partie de la longueur du tableau questions de l'objet quiz_Ghibli 
     loadQuestion(); // appel de la question suivante
     } else { //sinon
-      quizQuestion.innerText = 'fin du quiz'; // affichage 'fin du quiz'
+      quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
       quizOption.innerHTML = ''; // contenu vide des options
       nextButton.style.display = 'none'; //bouton n'apparait pas
     }
     });
 
-
 loadQuestion();
+
+
 
 
 
