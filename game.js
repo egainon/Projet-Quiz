@@ -7,6 +7,7 @@ const quizContainer = document.getElementById("quiz-container");
 const quizQuestion = document.querySelector(".question");
 const quizOption = document.querySelector(".options");
 const nextButton = document.getElementById("next-button");
+const replayButton = document.getElementById("replay-button");
 
 //déclaration fonction pour afficher chaque question
 function loadQuestion () {
@@ -31,10 +32,24 @@ function loadQuestion () {
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
       quizOption.innerHTML = ''; // contenu vide des options
       nextButton.style.display = 'none'; //bouton n'apparait pas
+      replayButton.style.display = 'inline-block'; // bouton qui apparait à la fin du quiz
+
     }
     });
 
 loadQuestion();
+
+// Fonction pour réinitialiser le quiz
+replayButton.addEventListener('click', () => {
+  // TODO Réinitialiser l'index 
+  
+  // TODO Cacher le bouton Rejouer et afficher le bouton Suivant
+  
+  // TODO Recharger la première question
+  
+});
+
+
 
 
 
