@@ -112,3 +112,22 @@ button.wrong {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
+
+#replay-button {
+  background-color: var(--aspargus);
+  color: var(--sidecar);
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#replay-button:hover {
+  background-color: var(--wewak);
+  color: var(--aspargus);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
