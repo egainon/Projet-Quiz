@@ -41,11 +41,13 @@ loadQuestion();
 
 // Fonction pour réinitialiser le quiz
 replayButton.addEventListener('click', () => {
-  // TODO Réinitialiser l'index 
-  
-  // TODO Cacher le bouton Rejouer et afficher le bouton Suivant
-  
-  // TODO Recharger la première question
+  // Réinitialiser l'index 
+  currentQuestionIndex = 0;
+  // Cacher le bouton Rejouer et afficher le bouton Suivant
+   replayButton.style.display = 'none';
+   nextButton.style.display = 'inline-block';
+  // Recharger la première question
+  loadQuestion();
   
 });
 
