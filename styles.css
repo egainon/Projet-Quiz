@@ -72,6 +72,12 @@ body {
   transform: translateY(-2px);
 }
 
+.options button:active {
+  border-color: var(--wewak);
+  color: white;
+  transform: translateY(-2px);
+}
+
 /* 🎯 États dynamiques (à gérer via JS) */
 button.selected {
   background-color: var(--sidecar);
