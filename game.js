@@ -21,8 +21,16 @@ function loadQuestion () {
     option_btn.innerText = option; //affichage du texte récupéré dans le fichier question.js dans le bouton
     option_btn.classList.add("options"); // ajout d'une classe pour le bouton pour le stylisé dans le CSS
     quizOption.appendChild(option_btn); //noeud pour rattacher au parent quizOption
-    });
+
+function checkAnswer() {
+  
+
+}
+
+checkAnswer()
+  });
 } 
+
 
     nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le bouton "suivant"
     currentQuestionIndex++; //incrémente l'index de la question
