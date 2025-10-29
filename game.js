@@ -22,15 +22,22 @@ function loadQuestion () {
     option_btn.classList.add("options"); // ajout d'une classe pour le bouton pour le stylisé dans le CSS
     quizOption.appendChild(option_btn); //noeud pour rattacher au parent quizOption
 
-function checkAnswer() {
-  
+    const optionChoisie = document.querySelector('button');
 
+    });
+
+   /* function checkAnswer () {
+      option_btn.addEventListener('click', () => {
+        
+        if (optionChoisie === quiz_Ghibli[currentQuestionIndex]) {
+        option_btn.classList.add('correct');
+        }
+        else {
+          option_btn.classList.add('wrong');
+        }
+      });
+    } */
 }
-
-checkAnswer()
-  });
-} 
-
 
     nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le bouton "suivant"
     currentQuestionIndex++; //incrémente l'index de la question
