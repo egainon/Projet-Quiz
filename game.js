@@ -8,6 +8,7 @@ const quizQuestion = document.querySelector(".question");
 const quizOption = document.querySelector(".options");
 const nextButton = document.getElementById("next-button");
 const replayButton = document.getElementById("replay-button");
+let score = 0;
 
 //déclaration fonction pour afficher chaque question
 function loadQuestion () {
@@ -22,23 +23,25 @@ function loadQuestion () {
     option_btn.classList.add("options"); // ajout d'une classe pour le bouton pour le stylisé dans le CSS
     quizOption.appendChild(option_btn); //noeud pour rattacher au parent quizOption
 
+      nextButton.disabled = true; // par defaut le bouton Suivant n'est pas clickable
+
       function checkAnswer(){
-      option_btn.addEventListener('click', ()=> { //écouteur d'évenement pour le bouton selectionné
+      option_btn.addEventListener('click', ()=> { //écouteur d'évenement pour le bouton selectionné        
         const allButtons = quizOption.querySelectorAll("button"); //déclare une constante pour tous les boutons
         allButtons.forEach(btn => btn.disabled = true); // Je désactive tous les boutons après avoir cliqué
+        nextButton.disabled = false; // dès qu'il existe un 'click' sur une des options, le bouton Souivant s'active 
         
         if (option_btn.innerText === currentQuestion.correct_answer){//si l'option du bouton (texte réponse) est correct
           option_btn.classList.add("correct");//style bonne réponse
-          
+          score++
+
         }else{//sinon
           option_btn.classList.add("wrong");//style mauvaise réponse
-          
         }
+        console.log(score);
       });
       }
       checkAnswer();
-   
-
     });
 }
 
