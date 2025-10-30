@@ -50,39 +50,39 @@ function loadQuestion () {
     loadQuestion(); // appel de la question suivante
     } else { //sinon
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
-      }
-      if (score == 1) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
-        } else if (score == 2) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Tu connais bien le monde de Ghibli, mais il reste encore quelques secrets à découvrir derrière les nuages.';
-        } else if (score == 3) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Les Kodamas te saluent : tu es en harmonie avec l’esprit Ghibli.';
-        } else if (score == 4) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Ton score brille comme le feu de Calcifer — impressionnant !';
-        } else if (score == 5) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
-        }
+      quizOption.innerHTML = 'ton score est de :'+score;
+     
       nextButton.style.display = 'none'; //bouton n'apparait pas
       replayButton.style.display = 'inline-block'; // bouton qui apparait à la fin du quiz
+     }
     });
 loadQuestion();
 
-// Fonction pour réinitialiser le quiz
-replayButton.addEventListener('click', () => {
+
+replayButton.addEventListener('click', () => { // Fonction pour réinitialiser le quiz
   score = 0; // réinitialise le score
   
   currentQuestionIndex = 0;// Réinitialiser l'index 
-   replayButton.style.display = 'none';// Cacher le bouton Rejouer et afficher le bouton Suivant
-   nextButton.style.display = 'inline-block';// Recharger la première question
+  replayButton.style.display = 'none';// Cacher le bouton Rejouer et afficher le bouton Suivant
+  nextButton.style.display = 'inline-block';// Recharger la première question
   
   loadQuestion();
   
 });
 
+  // if (score == 1) {
+  //         quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
+  //       } else if (score == 2) {
+  //         quizOption.innerHTML = 'Votre score est de : ' + score + '. Tu connais bien le monde de Ghibli, mais il reste encore quelques secrets à découvrir derrière les nuages.';
+  //       } else if (score == 3) {
+  //         quizOption.innerHTML = 'Votre score est de : ' + score + '. Les Kodamas te saluent : tu es en harmonie avec l’esprit Ghibli.';
+  //       } else if (score == 4) {
+  //         quizOption.innerHTML = 'Votre score est de : ' + score + '. Ton score brille comme le feu de Calcifer — impressionnant !';
+  //       } else if (score == 5) {
+  //         quizOption.innerHTML = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
+  //       }
 
-
-
-
+//
 
 
 
