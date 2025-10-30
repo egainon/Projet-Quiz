@@ -50,7 +50,8 @@ function loadQuestion () {
     loadQuestion(); // appel de la question suivante
     } else { //sinon
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
-        if (score == 1) {
+      }
+      if (score == 1) {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
         } else if (score == 2) {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Tu connais bien le monde de Ghibli, mais il reste encore quelques secrets à découvrir derrière les nuages.';
@@ -61,7 +62,6 @@ function loadQuestion () {
         } else if (score == 5) {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
         }
-      }
       nextButton.style.display = 'none'; //bouton n'apparait pas
       replayButton.style.display = 'inline-block'; // bouton qui apparait à la fin du quiz
     });
