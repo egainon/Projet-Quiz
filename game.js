@@ -22,21 +22,17 @@ function loadQuestion () {
     option_btn.classList.add("options"); // ajout d'une classe pour le bouton pour le stylisé dans le CSS
     quizOption.appendChild(option_btn); //noeud pour rattacher au parent quizOption
 
-    const optionChoisie = document.querySelector('button');
+    option_btn.addEventListener('click', ()=> {
+      if (option_btn.innerText === currentQuestion.correct_answer){
+        option_btn.classList.add("correct");
+      }else{
+        option_btn.classList.add("wrong");
+      }
+     // option_btn.classList.add(options : active);
+    }
+    )
 
     });
-
-   /* function checkAnswer () {
-      option_btn.addEventListener('click', () => {
-        
-        if (optionChoisie === quiz_Ghibli[currentQuestionIndex]) {
-        option_btn.classList.add('correct');
-        }
-        else {
-          option_btn.classList.add('wrong');
-        }
-      });
-    } */
 }
 
     nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le bouton "suivant"
@@ -48,10 +44,8 @@ function loadQuestion () {
       quizOption.innerHTML = ''; // contenu vide des options
       nextButton.style.display = 'none'; //bouton n'apparait pas
       replayButton.style.display = 'inline-block'; // bouton qui apparait à la fin du quiz
-
     }
     });
-
 loadQuestion();
 
 // Fonction pour réinitialiser le quiz
