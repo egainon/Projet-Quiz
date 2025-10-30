@@ -78,13 +78,9 @@ body {
   transform: translateY(-2px);
 }
 
-/* 🎯 États dynamiques (à gérer via JS) */
-button.selected {
-  background-color: var(--sidecar);
-  color: white;
-}
 
 button.correct {
+  background-color: var(--sidecar);
   border: var(--wewak);
   color: var(--aspargus);
 }
