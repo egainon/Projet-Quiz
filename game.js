@@ -22,21 +22,21 @@ function loadQuestion () {
     option_btn.classList.add("options"); // ajout d'une classe pour le bouton pour le stylisé dans le CSS
     quizOption.appendChild(option_btn); //noeud pour rattacher au parent quizOption
 
-    function checkAnswer(){
-    option_btn.addEventListener('click', ()=> {//écouteur d'évenement pour le bouton selectionné
-      if (option_btn.innerText === currentQuestion.correct_answer){//si l'option du bouton (texte réponse) est correct
-        option_btn.classList.add("correct");//style bonne réponse
+      function checkAnswer(){
+      option_btn.addEventListener('click', ()=> { //écouteur d'évenement pour le bouton selectionné
+        const allButtons = quizOption.querySelectorAll("button"); //déclare une constante pour tous les boutons
+        allButtons.forEach(btn => btn.disabled = true); // Je désactive tous les boutons après avoir cliqué
         
-      }else{//sinon
-        option_btn.classList.add("wrong");//style mauvaise réponse
-        
+        if (option_btn.innerText === currentQuestion.correct_answer){//si l'option du bouton (texte réponse) est correct
+          option_btn.classList.add("correct");//style bonne réponse
+          
+        }else{//sinon
+          option_btn.classList.add("wrong");//style mauvaise réponse
+          
+        }
+      });
       }
-    })
-    if (option_btn.addEventListener == true){
-    option_btn.disabled = true;
-   }
-    }
-    checkAnswer();
+      checkAnswer();
    
 
     });
