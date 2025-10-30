@@ -80,9 +80,10 @@ body {
 
 
 button.correct {
-  background-color: var(--sidecar);
-  border: var(--wewak);
+  background-color: #98d796;
+  border: var(--st-blue);
   color: var(--aspargus);
+  transform: translateY(-2px);
 }
 
 button.wrong {
