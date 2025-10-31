@@ -8,10 +8,32 @@ const quizQuestion = document.querySelector(".question");
 const quizOption = document.querySelector(".options");
 const nextButton = document.getElementById("next-button");
 const replayButton = document.getElementById("replay-button");
+const startButton = document.getElementById('start-button');
+const pageAccueil = document.getElementById('home');
+
 let score = 0;
+
+startButton.addEventListener.apply('click', startQuiz);
+
+function startQuiz() {
+  home.style.display = "none"; // on cache la page d’accueil
+  quiz.style.display = "block"; 
+  quizContainer.style.display = 'inline-block'// on affiche le quiz
+  loadQuestion();
+}
+
 
 //déclaration fonction pour afficher chaque question
 function loadQuestion () {
+  function startQuiz () {
+  quizQuestion.innerHTML = 'Monte à bord du Chat-bus, l’aventure Ghibli commence !';
+  replayButton.style.display = 'none';
+  nextButton.style.display = 'none';  
+
+  startButton.addEventListener('click', () => {
+    startButton.style.display = 'none';  
+  });
+}
     quizQuestion.innerHTML = ''; //contenu reste vide
     const currentQuestion = quiz_Ghibli.questions[currentQuestionIndex];//variable qui reprend une question du fichier question.js par rapport à l'index de l'objet quiz_Ghibli
     quizQuestion.innerText = currentQuestion.text;//inclusion du texte (récupéré de l'objet questions)
@@ -50,8 +72,7 @@ function loadQuestion () {
     loadQuestion(); // appel de la question suivante
     } else { //sinon
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
-      quizOption.innerHTML = 'ton score est de :'+score;
-        if (score == 1) {
+        if (score == 1) { // affichage de phrase selon le score obtenu
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
         } else if (score == 2) {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Tu connais bien le monde de Ghibli, mais il reste encore quelques secrets à découvrir derrière les nuages.';
@@ -61,6 +82,9 @@ function loadQuestion () {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Ton score brille comme le feu de Calcifer — impressionnant !';
         } else if (score == 5) {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
+        }
+        else if (score == 0) {
+          quizOption.innerHTML = 'Votre score est de : ' + score + '. On dirait que tu t’es perdu dans la Forêt des Esprits. Essaie encore, Totoro croit en toi !';
         }
      
       nextButton.style.display = 'none'; //bouton n'apparait pas
