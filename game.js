@@ -13,27 +13,7 @@ const pageAccueil = document.getElementById('home');
 
 let score = 0;
 
-startButton.addEventListener.apply('click', startQuiz);
-
-function startQuiz() {
-  home.style.display = "none"; // on cache la page d’accueil
-  quiz.style.display = "block"; 
-  quizContainer.style.display = 'inline-block'// on affiche le quiz
-  loadQuestion();
-}
-
-
-//déclaration fonction pour afficher chaque question
-function loadQuestion () {
-  function startQuiz () {
-  quizQuestion.innerHTML = 'Monte à bord du Chat-bus, l’aventure Ghibli commence !';
-  replayButton.style.display = 'none';
-  nextButton.style.display = 'none';  
-
-  startButton.addEventListener('click', () => {
-    startButton.style.display = 'none';  
-  });
-}
+function loadQuestion () { //déclaration fonction pour afficher chaque question
     quizQuestion.innerHTML = ''; //contenu reste vide
     const currentQuestion = quiz_Ghibli.questions[currentQuestionIndex];//variable qui reprend une question du fichier question.js par rapport à l'index de l'objet quiz_Ghibli
     quizQuestion.innerText = currentQuestion.text;//inclusion du texte (récupéré de l'objet questions)
@@ -65,6 +45,15 @@ function loadQuestion () {
       checkAnswer();
     });
 }
+
+/* function startQuiz() {
+  home.style.display = "none";
+  quiz.style.display = "block";
+  startButton.addEventListener('click', {
+  quizContainer.style.display = 'inline-block'
+  loadQuestion();
+  })
+}; */
 
     nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le bouton "suivant"
     currentQuestionIndex++; //incrémente l'index de la question
@@ -116,12 +105,3 @@ replayButton.addEventListener('click', () => { // Fonction pour réinitialiser l
         } else if (score == 5) {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
         }
-
-//
-
-
-
-
-
-
-
