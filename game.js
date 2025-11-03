@@ -46,14 +46,14 @@ function loadQuestion () { //déclaration fonction pour afficher chaque question
     });
 }
 
-/* function startQuiz() {
-  home.style.display = "none";
-  quiz.style.display = "block";
-  startButton.addEventListener('click', {
-  quizContainer.style.display = 'inline-block'
-  loadQuestion();
-  })
-}; */
+function startQuiz() { // fonction pour débuter le quiz
+  pageAccueil.style.display = 'true';
+  startButton.addEventListener('click', () => {//écouteur d'évenement sur le bouton start 
+  pageAccueil.style.display = 'none';// on cache la page d'accueil
+  quizContainer.style.display = 'inline-block';// on affiche le quiz
+  }) 
+}; 
+startQuiz();
 
     nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le bouton "suivant"
     currentQuestionIndex++; //incrémente l'index de la question
@@ -88,20 +88,9 @@ replayButton.addEventListener('click', () => { // Fonction pour réinitialiser l
   
   currentQuestionIndex = 0;// Réinitialiser l'index 
   replayButton.style.display = 'none';// Cacher le bouton Rejouer et afficher le bouton Suivant
-  nextButton.style.display = 'inline-block';// Recharger la première question
-  
-  loadQuestion();
-  
+  // nextButton.style.display = 'inline-block';// Recharger la première question
+  pageAccueil.style.display = 'inline-block';
+  quizContainer.style.display = 'none';
+  startQuiz();
 });
 
-  if (score == 1) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
-        } else if (score == 2) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Tu connais bien le monde de Ghibli, mais il reste encore quelques secrets à découvrir derrière les nuages.';
-        } else if (score == 3) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Les Kodamas te saluent : tu es en harmonie avec l’esprit Ghibli.';
-        } else if (score == 4) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Ton score brille comme le feu de Calcifer — impressionnant !';
-        } else if (score == 5) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
-        }
