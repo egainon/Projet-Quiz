@@ -1,0 +1,60 @@
+*, 
+::before, 
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* inclut padding et border dans la largeur/hauteur */
+}
+
+body{
+  background: #f1dcb6;
+  overflow: hidden; /* empêche les barres de scroll si confettis dépassent */
+}
+
+#quiz-container{
+  position:absolute; /* position par rapport au parent (body ici) */
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centre horizontalement et verticalement */
+}
+
+.btn-confettis { /* caractéristiques du btn par rapport à .container */
+  width: 100px;
+  height: 100px;
+  background-color: #7d9b5f;
+  color: #f1dcb6;
+  position: absolute; /* position par rapport à .container */
+  z-index: 10; /* pour que le bouton reste cliquable et visible au-dessus des confettis*/
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  /* box-shadow: 0 7px 0 rgb(160,160,160); */
+  font-size: 3rem;/* taille de l’emoji à l’intérieur */
+}
+
+.btn-confettis:active{
+  margin-top:7px; /* décale légèrement le bouton vers le bas */
+  background-color: #f0a3b0;
+  color: #7d9b5f;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.slot{ /* Zone où les confettis apparaissent */
+  position: relative; /* permet de positionner les div enfants par rapport à ce conteneur */
+  perspective: 1000px;  /* effet 3D pour les confettis si on utilise rotation Z/X/Y */
+}
+
+.slot div{ /* Chaque confetti créé dans .slot */
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  position: absolute; /* position absolue pour pouvoir bouger avec GSAP */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centre exactement sur le point (50%,50%) */
+  user-select: none; /* empêche de sélectionner le confetti avec la souris */
+}

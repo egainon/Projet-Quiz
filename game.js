@@ -58,7 +58,6 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
    } else { //sinon
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
       timerDisplay.style.display = 'none';
-      timeLeft = 0;
       if (score == 1) { // affichage de phrase selon le score obtenu
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
        } else if (score == 2) {
