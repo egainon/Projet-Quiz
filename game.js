@@ -11,19 +11,21 @@ const replayButton = document.getElementById("replay-button");
 const startButton = document.getElementById('start-button');
 const pageAccueil = document.getElementById('home');
 const timerDisplay = document.getElementById("timer");
-const barre = document.getElementById('myBar');
-const progressContainer = document.getElementById('myProgress');
+const progressBar = document.getElementById('progressBar')
+//const barre = document.getElementById('myBar');
+//const progressContainer = document.getElementById('myProgress');
 
-let score = 0;
+let currentBar = progressBar.value;
+let maxBar = progressBar.max;
+const step = maxBar / quiz_Ghibli.questions.length;
 let timeLeft = 45; //temps pour la durée du quiz
 let timerId; // variable qu'on apelle après pour faire fonctioner le timer
-let progress = 0; // définit le progrès à 0 pour la barre de progression
 
-function updateProgressBar() { // Fonction pour mettre à jour la barre de progression
-  const totalQuestions = quiz_Ghibli.questions.length; // déclare la longueur du tableau pour le total de la barre de progression
+
+/*const totalQuestions = quiz_Ghibli.questions.length; // déclare la longueur du tableau pour le total de la barre de progression
   const progressPercent = ((currentQuestionIndex) / totalQuestions) * 100; // variable pour savoir quelle est la progression faite
   barre.style.width = progressPercent + "%"; // donne le style à la barre pour montrer la progression selon le %
-}
+} */
 
 function loadQuestion () { //déclaration fonction pour afficher chaque question
   quizQuestion.innerHTML = ''; //contenu reste vide
@@ -55,31 +57,23 @@ function loadQuestion () { //déclaration fonction pour afficher chaque question
   }
   checkAnswer();
   });
-  updateProgressBar(); // mettre à jour la barre quand la question est affichée
 }
 
 nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le bouton "suivant"
+  if (currentBar < maxBar) {
+    progressBar.value += step;
+    if (currentBar > maxBar) {
+      currentBar = maxBar;
+    }
+  }
+
   currentQuestionIndex++; //incrémente l'index de la question
   if(currentQuestionIndex < quiz_Ghibli.questions.length) { // si l'index de la question actuelle fait partie de la longueur du tableau questions de l'objet quiz_Ghibli 
   loadQuestion(); // appel de la question suivante
    } else { //sinon
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
       timerDisplay.style.display = 'none'; // on cache le timer
-
-      if (score == 1) { // affichage de phrase selon le score obtenu
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
-       } else if (score == 2) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Tu connais bien le monde de Ghibli, mais il reste encore quelques secrets à découvrir derrière les nuages.';
-       } else if (score == 3) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Les Kodamas te saluent : tu es en harmonie avec l’esprit Ghibli.';
-       } else if (score == 4) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Ton score brille comme le feu de Calcifer — impressionnant !';
-       } else if (score == 5) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
-       } else if (score == 0) {
-          quizOption.innerHTML = 'Votre score est de : ' + score + '. On dirait que tu t’es perdu dans la Forêt des Esprits. Essaie encore, Totoro croit en toi !';
-      }
-      
+      endQuiz('finished')      
        
   nextButton.style.display = 'none'; //bouton n'apparait pas
   replayButton.style.display = 'inline-block'; // bouton qui apparait à la fin du quiz
@@ -117,8 +111,21 @@ function endQuiz(reason) { // Fin du quiz
   if (reason === 'timeout') { // si la raison est timeout
     quizQuestion.innerText = '⏰ Temps écoulé !'; // phrase affichée
     message = `Votre score est de ${score} avant la fin du temps.`; // phrase affichée
-  } else {
+  } else if(reason === 'finished') {
     quizQuestion.innerText = "Fin du quiz. Merci ! 🌸";
+    if (score == 1) { // affichage de phrase selon le score obtenu
+          quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
+       } else if (score == 2) {
+          quizOption.innerHTML = 'Votre score est de : ' + score + '. Tu connais bien le monde de Ghibli, mais il reste encore quelques secrets à découvrir derrière les nuages.';
+       } else if (score == 3) {
+          quizOption.innerHTML = 'Votre score est de : ' + score + '. Les Kodamas te saluent : tu es en harmonie avec l’esprit Ghibli.';
+       } else if (score == 4) {
+          quizOption.innerHTML = 'Votre score est de : ' + score + '. Ton score brille comme le feu de Calcifer — impressionnant !';
+       } else if (score == 5) {
+          quizOption.innerHTML = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
+       } else if (score == 0) {
+          quizOption.innerHTML = 'Votre score est de : ' + score + '. On dirait que tu t’es perdu dans la Forêt des Esprits. Essaie encore, Totoro croit en toi !';
+      }
   }
   quizOption.innerHTML = message;
 }
