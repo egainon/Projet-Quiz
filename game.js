@@ -11,10 +11,19 @@ const replayButton = document.getElementById("replay-button");
 const startButton = document.getElementById('start-button');
 const pageAccueil = document.getElementById('home');
 const timerDisplay = document.getElementById("timer");
+const barre = document.getElementById('myBar');
+const progressContainer = document.getElementById('myProgress');
 
 let score = 0;
 let timeLeft = 45; //temps pour la durée du quiz
-let timerId;
+let timerId; // variable qu'on apelle après pour faire fonctioner le timer
+let progress = 0; // définit le progrès à 0 pour la barre de progression
+
+function updateProgressBar() { // Fonction pour mettre à jour la barre de progression
+  const totalQuestions = quiz_Ghibli.questions.length; // déclare la longueur du tableau pour le total de la barre de progression
+  const progressPercent = ((currentQuestionIndex) / totalQuestions) * 100; // variable pour savoir quelle est la progression faite
+  barre.style.width = progressPercent + "%"; // donne le style à la barre pour montrer la progression selon le %
+}
 
 function loadQuestion () { //déclaration fonction pour afficher chaque question
   quizQuestion.innerHTML = ''; //contenu reste vide
@@ -46,6 +55,7 @@ function loadQuestion () { //déclaration fonction pour afficher chaque question
   }
   checkAnswer();
   });
+  updateProgressBar(); // mettre à jour la barre quand la question est affichée
 }
 
 nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le bouton "suivant"
@@ -54,7 +64,7 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
   loadQuestion(); // appel de la question suivante
    } else { //sinon
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
-      timerDisplay.style.display = 'none';
+      timerDisplay.style.display = 'none'; // on cache le timer
 
       if (score == 1) { // affichage de phrase selon le score obtenu
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
@@ -78,35 +88,35 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
 loadQuestion();
 
 function startTimer() { //fonction timer
-clearInterval(timerId);
-timeLeft = 45;
-timerDisplay.textContent = timeLeft
+clearInterval(timerId); // Définit l'interval selon timerId
+timeLeft = 45; // temps restant
+timerDisplay.textContent = timeLeft // affiche la quantité de temps en format "texte" dans le timer
 
 timerId = setInterval(() => { // fonction pour l'intervalle de temps
-  timeLeft--;
-  timerDisplay.textContent = timeLeft;
+  timeLeft--; // décrémentation du temps
+  timerDisplay.textContent = timeLeft; // affiche la quantité de temps en format "texte" dans le timer
 
-  if (timeLeft <= 0) {
-    endQuiz('timeout');
+  if (timeLeft <= 0) { // si le timer arrive à 0
+    endQuiz('timeout'); // on donne la valeur du endQuiz comme 'timeout'
     }
-  }, 1000 );
+  }, 1000 ); // vitesse du temps 
 }
-function stopTimer() {
-  clearInterval(timerId);
-  timerId= null;
+function stopTimer() { // fonction pour arreter le timer
+  clearInterval(timerId); // vide l'intervale
+  timerId= null; // le temps devient nul (pas à 0)
 }
 
-// Fin du quiz
-function endQuiz(reason) {
-  stopTimer();
-  timerDisplay.style.display = "none";
-  nextButton.style.display = "none";
-  replayButton.style.display = "inline-block";
+function endQuiz(reason) { // Fin du quiz
+  stopTimer(); // on apelle la fonction pour arreter le timer
+  timerDisplay.style.display = 'none'; // on cache le timer
+  nextButton.style.display = 'none'; // on cacher le bouton 'Suivant'
+  replayButton.style.display = 'inline-block'; // on affiche le bouton 'Rejouer'
+  progressContainer.style.display = 'none'; // on cache la barre de progression
 
-  let message = "";
-  if (reason === "timeout") {
-    quizQuestion.innerText = "⏰ Temps écoulé !";
-    message = `Votre score est de ${score} avant la fin du temps.`;
+  let message = ''; // message vide pour injecter chaque message de fin
+  if (reason === 'timeout') { // si la raison est timeout
+    quizQuestion.innerText = '⏰ Temps écoulé !'; // phrase affichée
+    message = `Votre score est de ${score} avant la fin du temps.`; // phrase affichée
   } else {
     quizQuestion.innerText = "Fin du quiz. Merci ! 🌸";
   }
@@ -117,6 +127,8 @@ replayButton.addEventListener('click', () => {// Fonction pour réinitialiser le
   stopTimer(); 
   pageAccueil.style.display = 'inline-block';// on affiche page accueil
   quizContainer.style.display = 'none';//on cache le quiz
+  progressContainer.style.display = 'block'; // on réaffiche la barre de progression pour la prochaine partie
+  barre.style.width = '0%'; // réinitialise la barre
 });
 
 startButton.addEventListener('click', () => {//écouteur d'évenement sur le bouton start 
@@ -127,10 +139,12 @@ startButton.addEventListener('click', () => {//écouteur d'évenement sur le bou
 
   pageAccueil.style.display = 'none';// on cache la page d'accueil
   quizContainer.style.display = 'inline-block';// on affiche le quiz
-  timerDisplay.style.display = 'inline-block';
+  timerDisplay.style.display = 'inline-block'; // on affiche le timer
   nextButton.style.display = 'inline-block';//on affiche le bouton suivant
   replayButton.style.display = 'none';// Cacher le bouton Rejouer et afficher le bouton Suivant
-  
+  progressContainer.style.display = 'block'; // on affiche la barre de progression
+  barre.style.width = '0%'; // la barre commence a 0%
+
   loadQuestion();
   startTimer();
   }); 
