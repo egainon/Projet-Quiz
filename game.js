@@ -20,7 +20,6 @@ function loadQuestion () { //déclaration fonction pour afficher chaque question
   quizQuestion.innerHTML = ''; //contenu reste vide
   const currentQuestion = quiz_Ghibli.questions[currentQuestionIndex];//variable qui reprend une question du fichier question.js par rapport à l'index de l'objet quiz_Ghibli
   quizQuestion.innerText = currentQuestion.text;//inclusion du texte (récupéré de l'objet questions)
-
   quizOption.innerHTML = ''; //contenu vide pour les options
   currentQuestion.options.forEach(option => { //injecter les options dans le HTML pour les questions
   const option_btn = document.createElement('button'); //déclaration constante qui va créer le bouton de chaque option
@@ -42,9 +41,7 @@ function loadQuestion () { //déclaration fonction pour afficher chaque question
 
   }else{//sinon
     option_btn.classList.add('wrong');//style mauvaise réponse
-    // correct_answer.style.add('correct');//montre bonne réponse
   }
-
   });
   }
   checkAnswer();
@@ -58,7 +55,7 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
    } else { //sinon
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
       timerDisplay.style.display = 'none';
-      timeLeft = 0;
+
       if (score == 1) { // affichage de phrase selon le score obtenu
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
        } else if (score == 2) {
@@ -81,45 +78,60 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
 loadQuestion();
 
 function startTimer() { //fonction timer
-timerDisplay.textContent = timeLeft; //affiche le temps restant
+clearInterval(timerId);
+timeLeft = 45;
+timerDisplay.textContent = timeLeft
 
 timerId = setInterval(() => { // fonction pour l'intervalle de temps
   timeLeft--;
   timerDisplay.textContent = timeLeft;
 
   if (timeLeft <= 0) {
-    clearInterval(timerId);
-    alert("⏰ Temps écoulé !");
-    endQuiz();
+    endQuiz('timeout');
     }
   }, 1000 );
 }
-function resetTimer() {
+function stopTimer() {
   clearInterval(timerId);
-  // timeLeft = ;
-  startTimer();
+  timerId= null;
 }
 
 // Fin du quiz
-function endQuiz() {
-  clearInterval(timerId);
-  quizContainer.innerHTML = '<h2>Temps écoulé !</h2>';// ce qui s'affiche quand le temps est écoulé
+function endQuiz(reason) {
+  stopTimer();
+  timerDisplay.style.display = "none";
+  nextButton.style.display = "none";
+  replayButton.style.display = "inline-block";
+
+  let message = "";
+  if (reason === "timeout") {
+    quizQuestion.innerText = "⏰ Temps écoulé !";
+    message = `Votre score est de ${score} avant la fin du temps.`;
+  } else {
+    quizQuestion.innerText = "Fin du quiz. Merci ! 🌸";
+  }
+  quizOption.innerHTML = message;
 }
 
-replayButton.addEventListener('click', () => { // Fonction pour réinitialiser le quiz
+replayButton.addEventListener('click', () => {// Fonction pour réinitialiser le quiz
+  stopTimer(); 
   pageAccueil.style.display = 'inline-block';// on affiche page accueil
   quizContainer.style.display = 'none';//on cache le quiz
 });
 
 startButton.addEventListener('click', () => {//écouteur d'évenement sur le bouton start 
-  resetTimer();
-  startTimer();
+
   score = 0; // réinitialise le score 
   currentQuestionIndex = 0;// Réinitialiser l'index 
-  replayButton.style.display = 'none';// Cacher le bouton Rejouer et afficher le bouton Suivant
+  timeLeft = 45;
+
   pageAccueil.style.display = 'none';// on cache la page d'accueil
   quizContainer.style.display = 'inline-block';// on affiche le quiz
+  timerDisplay.style.display = 'inline-block';
   nextButton.style.display = 'inline-block';//on affiche le bouton suivant
+  replayButton.style.display = 'none';// Cacher le bouton Rejouer et afficher le bouton Suivant
+  
   loadQuestion();
+  startTimer();
   }); 
 
