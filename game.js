@@ -10,8 +10,11 @@ const nextButton = document.getElementById("next-button");
 const replayButton = document.getElementById("replay-button");
 const startButton = document.getElementById('start-button');
 const pageAccueil = document.getElementById('home');
+const timerDisplay = document.getElementById("timer");
 
 let score = 0;
+let timeLeft = 45; //temps pour la durée du quiz
+let timerId;
 
 function loadQuestion () { //déclaration fonction pour afficher chaque question
   quizQuestion.innerHTML = ''; //contenu reste vide
@@ -53,7 +56,9 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
   if(currentQuestionIndex < quiz_Ghibli.questions.length) { // si l'index de la question actuelle fait partie de la longueur du tableau questions de l'objet quiz_Ghibli 
   loadQuestion(); // appel de la question suivante
    } else { //sinon
-    quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
+      quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
+      timerDisplay.style.display = 'none';
+      timeLeft = 0;
       if (score == 1) { // affichage de phrase selon le score obtenu
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
        } else if (score == 2) {
@@ -67,13 +72,39 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
        } else if (score == 0) {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. On dirait que tu t’es perdu dans la Forêt des Esprits. Essaie encore, Totoro croit en toi !';
       }
-     
+      
+       
   nextButton.style.display = 'none'; //bouton n'apparait pas
   replayButton.style.display = 'inline-block'; // bouton qui apparait à la fin du quiz
   }
   });
 loadQuestion();
 
+function startTimer() { //fonction timer
+timerDisplay.textContent = timeLeft; //affiche le temps restant
+
+timerId = setInterval(() => { // fonction pour l'intervalle de temps
+  timeLeft--;
+  timerDisplay.textContent = timeLeft;
+
+  if (timeLeft <= 0) {
+    clearInterval(timerId);
+    alert("⏰ Temps écoulé !");
+    endQuiz();
+    }
+  }, 1000 );
+}
+function resetTimer() {
+  clearInterval(timerId);
+  // timeLeft = ;
+  startTimer();
+}
+
+// Fin du quiz
+function endQuiz() {
+  clearInterval(timerId);
+  quizContainer.innerHTML = '<h2>Temps écoulé !</h2>';// ce qui s'affiche quand le temps est écoulé
+}
 
 replayButton.addEventListener('click', () => { // Fonction pour réinitialiser le quiz
   pageAccueil.style.display = 'inline-block';// on affiche page accueil
@@ -81,6 +112,8 @@ replayButton.addEventListener('click', () => { // Fonction pour réinitialiser l
 });
 
 startButton.addEventListener('click', () => {//écouteur d'évenement sur le bouton start 
+  resetTimer();
+  startTimer();
   score = 0; // réinitialise le score 
   currentQuestionIndex = 0;// Réinitialiser l'index 
   replayButton.style.display = 'none';// Cacher le bouton Rejouer et afficher le bouton Suivant
