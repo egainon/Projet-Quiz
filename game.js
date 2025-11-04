@@ -14,6 +14,8 @@ const timerDisplay = document.getElementById("timer");
 const barre = document.getElementById('myBar');
 const progressContainer = document.getElementById('myProgress');
 
+const emojis = ["🌸", "☁", "🍃", "🏯"]; // Les emojis à afficher
+
 let score = 0;
 let timeLeft = 45; //temps pour la durée du quiz
 let timerId; // variable qu'on apelle après pour faire fonctioner le timer
@@ -66,8 +68,47 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
   loadQuestion(); // appel de la question suivante
    } else { //sinon
       endQuiz('finished');
-  }
-  });
+
+      // Sélection du bouton "Suivant"
+      const btnRect = nextButton.getBoundingClientRect();
+
+      // Création des confettis autour du bouton
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        document.body.appendChild(confetti); // append directement au body pour position absolue
+        confetti.style.position = "absolute";
+        confetti.style.fontSize = "40px";
+        confetti.style.pointerEvents = "none";
+        confetti.style.zIndex = "1000";
+
+        // Position de départ aléatoire autour du bouton
+        const startX = btnRect.left + btnRect.width / 2 + (Math.random() * 60 - 30);
+        const startY = btnRect.top + btnRect.height / 2 + (Math.random() * 40 - 20);
+
+        gsap.set(confetti, {
+          x: startX,
+          y: startY,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.to(confetti, { // Animation GSAP (GreenSock Animation Platform) : librairie javascript pour animations
+        duration: 3,
+        x: Math.random() * 600 - 300,   // déplacement aléatoire X
+        y: Math.random() * 500 - 400,   // déplacement aléatoire Y
+        z: Math.random() * 300 - 150,   // profondeur 3D
+        rotationX: Math.random() * 360,
+        rotationY: Math.random() * 360,
+        rotationZ: Math.random() * 360,
+        opacity: 0,
+        onComplete: () => confetti.remove() //Supprime du dom quand animation finie
+          });
+        }
+        
+   }
+});
+
 loadQuestion();
 
 function startTimer() { //fonction timer
