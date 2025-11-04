@@ -13,10 +13,13 @@
 </head>
 <body>
 	<!-- Section pour la page d'accueil -->
-		<div id="home">
-    	<h1>Monte à bord du Chat-bus, l’aventure Ghibli commence !</h1>
-   		 <button id="start-button">On commence ! 😺</button>
-  		</div>
+<div id="home">
+  <div id="home-content">
+    <h1>Monte à bord du Chat-bus, <br>l'aventure Ghibli commence ! 🚌😸</h1>
+    <button id="start-button">Commencer le quiz ✨</button>
+  </div>
+</div>
+
     
 	<!-- Section pour le bloc du quiz -->
 	<div id="quiz-container" style="display: none;">
@@ -30,7 +33,9 @@
 		<!-- Div pour la progress bar -->
 
 		<div id="myProgress">
-  		<div id="myBar"></div>
+		<div id="myBar">
+			<img src="./Projet-quiz-test-confettis/images/totoro2.png" id="totoro-icon" alt="Totoro qui avance" />
+		</div>
 		</div>
 		
 		<!-- Prévois déjà le design du bouton "suivant" pour passer à la prochaine question -->
@@ -39,6 +44,8 @@
 				<button id="replay-button" style="display: none;">Rejouer</button> 
 			</div>
 	</div>
+
+	<div class="copyright">Source : Studio Ghibli</div>
 
 <script type="module" src="game.js"></script>
 </body>

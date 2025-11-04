@@ -19,15 +19,53 @@ body {
   padding: 0;
   height: 100vh;
   background-color: var(--wewak);
-  background-image: url("./images/Fond-image-totoro-desktop-beige-clair.png");
+  background-image: url("./images/Fond-image-accueil-totoro-desktop-ok.png");
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* HOME PAGE */
+#home-content {
+  text-align: center;
+  background-color: rgba(241, 220, 182, 0.85); /* ton beige avec transparence */
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+#home h1 {
+  font-size: 2rem;
+  color: rgb(65, 61, 61);
+  margin-bottom: 2rem;
+  font-weight: 800;
+}
+
+
+#start-button {
+  background-color: var(--aspargus);
+  color: var(--sidecar);
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#start-button:hover {
+  background-color: var(--st-blue);
+  color: var(--aspargus);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
 #quiz-container {
   background-color: var(--sidecar);
-  color: var(--aspargus);
+  color: rgb(65, 61, 61);;
   border-radius: 16px;
   padding: 2rem;
   width: 90%;
@@ -56,7 +94,7 @@ body {
 
 .options button {
   background-color: var(--st-blue);
-  color: var(--aspargus);
+  color: rgb(65, 61, 61);
   border: 2px solid var(--st-blue);
   border-radius: 8px;
   padding: 0.8rem 1rem;
@@ -71,13 +109,6 @@ body {
   color: white;
   transform: translateY(-2px);
 }
-
-.options button:active {
-  border-color: var(--wewak);
-  color: white;
-  transform: translateY(-2px);
-}
-
 
 button.correct {
   background-color: #98d796;
@@ -136,12 +167,58 @@ button.wrong {
 }
 
 #myProgress {
+  position: relative;
   width: 100%;
-  background-color: grey;
+  height: 50px;
+  background-color: #d8c8a4;
+  border-radius: 20px;
+  margin: 2rem 0 1rem 0; 
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
 }
 
 #myBar {
-  width: 1%;
-  height: 30px;
-  background-color: green;
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--aspargus), var(--st-blue));
+  border-radius: 20px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Totoro qui avance */
+#totoro-icon {
+  position: absolute;
+  top: -10px;
+  right: -30px;
+  height: 60px;
+  transition: transform 0.5s ease;
+}
+
+#timer {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--aspargus);
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  margin: 0 auto 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.copyright {
+  position: fixed;
+  bottom: 12px;
+  right: 16px;
+  background-color: rgba(241, 220, 182, 0.85); /* même ton beige que le quiz */
+  color: rgb(65, 61, 61);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  transition: all 0.3s ease;
 }

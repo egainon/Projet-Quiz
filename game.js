@@ -23,6 +23,8 @@ function updateProgressBar() { // Fonction pour mettre à jour la barre de progr
   const totalQuestions = quiz_Ghibli.questions.length; // déclare la longueur du tableau pour le total de la barre de progression
   const progressPercent = ((currentQuestionIndex + 1) / totalQuestions) * 100; // variable pour savoir quelle est la progression faite
   barre.style.width = progressPercent + "%"; // donne le style à la barre pour montrer la progression selon le %
+  const totoro = document.getElementById("totoro-icon");
+  totoro.style.transform = `translateX(${progressPercent}%)`;
 }
 
 function loadQuestion () { //déclaration fonction pour afficher chaque question
@@ -107,7 +109,7 @@ function endQuiz(reason) { // Fin du quiz
        } else if (score == 3) {
           message = 'Votre score est de : ' + score + '. Les Kodamas te saluent : tu es en harmonie avec l’esprit Ghibli.';
        } else if (score == 4) {
-          message = 'Votre score est de : ' + score + '. Ton score brille comme le feu de Calcifer — impressionnant !';
+          message = 'Votre score est de : ' + score + '. Ton score brille comme le feu de Calcifer. Impressionnant !';
        } else if (score == 5) {
           message = 'Votre score est de : ' + score + '. Totoro t’ouvre grand son parapluie : tu fais partie de la famille Ghibli !';
        } else if (score == 0) {
