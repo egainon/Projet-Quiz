@@ -25,7 +25,7 @@ function updateProgressBar() { // Fonction pour mettre à jour la barre de progr
   const totalQuestions = quiz_Ghibli.questions.length; // déclare la longueur du tableau pour le total de la barre de progression
   const progressPercent = ((currentQuestionIndex + 1) / totalQuestions) * 100; // variable pour savoir quelle est la progression faite
   barre.style.width = progressPercent + "%"; // donne le style à la barre pour montrer la progression selon le %
-  const totoro = document.getElementById("totoro-icon");
+  const totoro = document.getElementById("totoro-icon");//icone affichée sur la barre de progression
   totoro.style.transform = `translateX(${progressPercent}%)`;
 }
 
@@ -33,7 +33,7 @@ function loadQuestion () { //déclaration fonction pour afficher chaque question
   quizQuestion.innerHTML = ''; //contenu reste vide
   const currentQuestion = quiz_Ghibli.questions[currentQuestionIndex];//variable qui reprend une question du fichier question.js par rapport à l'index de l'objet quiz_Ghibli
   quizQuestion.innerText = currentQuestion.text;//inclusion du texte (récupéré de l'objet questions)
-  quizOption.innerHTML = ''; //contenu vide pour les options
+  quizOption.innerHTML = ''; //contenu vide pour les options de réponses
   currentQuestion.options.forEach(option => { //injecter les options dans le HTML pour les questions
   const option_btn = document.createElement('button'); //déclaration constante qui va créer le bouton de chaque option
   option_btn.innerText = option; //affichage du texte récupéré dans le fichier question.js dans le bouton
@@ -46,7 +46,7 @@ function loadQuestion () { //déclaration fonction pour afficher chaque question
   option_btn.addEventListener('click', ()=> { //écouteur d'évenement pour le bouton selectionné        
   const allButtons = quizOption.querySelectorAll("button"); //déclare une constante pour tous les boutons
   allButtons.forEach(btn => btn.disabled = true); // Je désactive tous les boutons après avoir cliqué
-  nextButton.disabled = false; // dès qu'il existe un 'click' sur une des options, le bouton Souivant s'active 
+  nextButton.disabled = false; // dès qu'il existe un 'click' sur une des options, le bouton Suivant s'active 
         
   if (option_btn.innerText === currentQuestion.correct_answer){//si l'option du bouton (texte réponse) est correct
     option_btn.classList.add('correct');//style bonne réponse
@@ -69,16 +69,14 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
    } else { //sinon
       endQuiz('finished');
 
-      // Sélection du bouton "Suivant"
-      const btnRect = nextButton.getBoundingClientRect();
+      const btnRect = nextButton.getBoundingClientRect(); // Sélection du bouton "Suivant"
 
-      // Création des confettis autour du bouton
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 50; i++) {// Création des confettis autour du bouton
         const confetti = document.createElement('div');
         confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
         document.body.appendChild(confetti); // append directement au body pour position absolue
-        confetti.style.position = "absolute";
-        confetti.style.fontSize = "40px";
+        confetti.style.position = "absolute"; //position des confettis
+        confetti.style.fontSize = "40px"; // taille des confettis
         confetti.style.pointerEvents = "none";
         confetti.style.zIndex = "1000";
 
@@ -86,8 +84,8 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
         const startX = btnRect.left + btnRect.width / 2 + (Math.random() * 60 - 30);
         const startY = btnRect.top + btnRect.height / 2 + (Math.random() * 40 - 20);
 
-        gsap.set(confetti, {
-          x: startX,
+        gsap.set(confetti, { //définition des propriété de l'élément confetti (sans animation)
+          x: startX, 
           y: startY,
           opacity: 1,
           scale: 1,
