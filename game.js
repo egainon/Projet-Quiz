@@ -72,10 +72,6 @@ nextButton.addEventListener('click', () => {  // écouteur d'évenements pour le
   loadQuestion(); // appel de la question suivante
    } else { //sinon
       quizQuestion.innerText = 'Fin du quiz. Merci ! 🌸 '; // affichage 'fin du quiz'
-<<<<<<< HEAD
-      timerDisplay.style.display = 'none';
-      if (score == 1) { // affichage de phrase selon le score obtenu
-=======
       timerDisplay.style.display = 'none'; // on cache le timer
       endQuiz('finished')      
        
@@ -118,7 +114,6 @@ function endQuiz(reason) { // Fin du quiz
   } else if(reason === 'finished') {
     quizQuestion.innerText = "Fin du quiz. Merci ! 🌸";
     if (score == 1) { // affichage de phrase selon le score obtenu
->>>>>>> bc4e7acd27061ba91fed5aae1fe8004564218de0
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Pas grave ! Même Chihiro a dû travailler dur avant de s’en sortir !';
        } else if (score == 2) {
           quizOption.innerHTML = 'Votre score est de : ' + score + '. Tu connais bien le monde de Ghibli, mais il reste encore quelques secrets à découvrir derrière les nuages.';
